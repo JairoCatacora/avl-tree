@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  cpp_dev_container:
+    build:
+      context: .
+      dockerfile: Dockerfile-aed
+      args:
+        uid: ${UID}
+        gid: ${GID}
+        user: ${USER}
+        group: ${GROUP}
+    environment:
+      TZ: "Etc/UTC"  # Set the timezone as needed
+    volumes:
+      - ./app:/home/${USER}/app  # Mount your app directory
+    working_dir: /home/${USER}/app
+    tty: true
+    stdin_open: true
